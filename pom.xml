@@ -89,6 +89,11 @@
             <artifactId>webjars-locator</artifactId>
             <version>0.46</version>
         </dependency>
+        <dependency>             
+            <groupId>com.google.firebase</groupId>             
+            <artifactId>firebase-admin</artifactId>             
+            <version>9.5.0</version>         
+        </dependency>
     </dependencies>
 
     <build>
