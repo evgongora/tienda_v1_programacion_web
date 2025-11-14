@@ -20,7 +20,7 @@ public class ProductoService {
 
     @Autowired
     private ProductoRepository productoRepository;
-    
+
     @Transactional(readOnly = true)
     public List<Producto> getProductos(boolean activo) {
         var lista = productoRepository.findAll();
@@ -29,19 +29,19 @@ public class ProductoService {
         }
         return lista;
     }
-    
+
     @Transactional(readOnly = true)
-    public Producto getProducto(Producto producto){
+    public Producto getProducto(Producto producto) {
         return productoRepository.findById(producto.getIdProducto()).orElse(null);
     }
-    
+
     @Transactional
-    public void save(Producto producto){
+    public void save(Producto producto) {
         productoRepository.save(producto);
     }
-    
+
     @Transactional
-    public boolean deleteProducto(Producto producto){
+    public boolean deleteProducto(Producto producto) {
         try {
             productoRepository.delete(producto);
             productoRepository.flush();
@@ -53,6 +53,19 @@ public class ProductoService {
 
     public boolean delete(Producto producto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
     }
 
+    @Transactional(readOnly = true)
+
+    public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup) {
+
+        return productoRepository.findByPrecioBetweenOrderByDescripcion(precioInf, precioSup);
+
+    }
+
+    @Transactional(readOnly = true)
+    public List<Producto> metodoJPQL(double precioInf, double precioSup) {
+        return productoRepository.metodoJPQL(precioInf, precioSup);
+    }
 }
